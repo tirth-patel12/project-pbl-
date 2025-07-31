@@ -1,0 +1,12 @@
+# Python
+*.pyc
+__pycache__/
+venv/
+.env
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Database (so real data not uploaded)
+database/*.db

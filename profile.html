@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Profile</h3>
+<div class="card p-4" style="max-width: 400px;">
+  <div><strong>Username:</strong> {{ user['username'] }}</div>
+  <div><strong>User ID:</strong> {{ user['id'] }}</div>
+</div>
+{% endblock %}

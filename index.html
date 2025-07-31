@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Inventory Dashboard</h2>
+
+<div class="mb-3">
+  <a class="btn btn-success" href="{{ url_for('add') }}">Add New Item</a>
+  <a href="{{ url_for('export_csv') }}" class="btn btn-outline-success ms-2">Export Inventory CSV</a>
+  <a href="{{ url_for('import_csv') }}" class="btn btn-outline-primary ms-2">Import Inventory CSV</a>
+  <a href="{{ url_for('report') }}" class="btn btn-outline-info ms-2">View Report</a>
+</div>
+
+<!-- Toggle charts button -->
+<button id="toggleChartsBtn" class="btn btn-outline-primary mb-3">
+  Show Charts ▼
+</button>
+
+<!-- Charts container (hidden by default) -->
+<div id="chartsSection" style="display: none;">
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <h5>Stock per Category</h5>
+      <canvas id="barChart"></canvas>
+    </div>
+    <div class="col-md-6">
+      <h5>Unit Distribution</h5>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Filter form with category filter + search box -->
+<form method="get" action="{{ url_for('dashboard') }}" class="mb-4">
+  <div class="row g-2 align-items-center">
+    <div class="col-auto">
+      <label for="category" class="col-form-label">Filter by Category:</label>
+    </div>
+    <div class="col-auto">
+      <select class="form-select" id="category" name="category" onchange="this.form.submit()">
+        <option value="">All Categories</option>
+        {% for cat in categories %}
+          <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="col-auto">
+      <label for="search" class="col-form-label">Search:</label>
+    </div>
+    <div class="col-auto">
+      <input type="search" name="search" id="search" class="form-control" placeholder="Search by name or category" value="{{ search_query | default('') }}">
+    </div>
+
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Filter</button>
+      <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Clear</a>
+    </div>
+  </div>
+</form>
+
+{% if items and items|length > 0 %}
+  <p class="text-muted">Showing {{ items|length }} inventory item{{ 's' if items|length > 1 else '' }}.</p>
+
+  {% if alerts and alerts|length > 0 %}
+    <div class="alert alert-danger">
+      <strong>Low stock alert:</strong>
+      {% for item in alerts %}
+        <div>
+          {{ item['name'] }} (Current: {{ item['quantity'] }}, Min: {{ item['min_threshold'] }})
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Unit</th>
+        <th>Min. Threshold</th>
+        <th>Last Updated</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr {% if item['quantity'] < item['min_threshold'] %}class="table-danger"{% endif %}>
+        <td>{{ item['id'] }}</td>
+        <td>{{ item['name'] }}</td>
+        <td>{{ item['category'] }}</td>
+        <td>{{ item['quantity'] }}</td>
+        <td>{{ item['unit'] }}</td>
+        <td>{{ item['min_threshold'] }}</td>
+        <td>{{ item['last_updated'] }}</td>
+        <td>
+          <a href="{{ url_for('edit', id=item['id']) }}" class="btn btn-sm btn-warning">Edit</a>
+          <form method="POST" action="{{ url_for('delete', id=item['id']) }}" style="display:inline;" onsubmit="return confirm('Delete this item?');">
+            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No inventory items found. Please add some.</p>
+{% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const chartsSection = document.getElementById('chartsSection');
+  const toggleBtn = document.getElementById('toggleChartsBtn');
+  let chartsVisible = false;
+
+  toggleBtn.addEventListener('click', () => {
+    chartsVisible = !chartsVisible;
+    if (chartsVisible) {
+      chartsSection.style.display = 'block';
+      toggleBtn.textContent = 'Hide Charts ▲';
+    } else {
+      chartsSection.style.display = 'none';
+      toggleBtn.textContent = 'Show Charts ▼';
+    }
+  });
+
+  const barCtx = document.getElementById('barChart').getContext('2d');
+  const barChart = new Chart(barCtx, {
+    type: 'bar',
+    data: {
+      labels: {{ bar_labels | safe }},
+      datasets: [{
+        label: 'Total Stock',
+        data: {{ bar_data | safe }},
+        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            precision: 0
+          }
+        }
+      }
+    }
+  });
+
+  const pieCtx = document.getElementById('pieChart').getContext('2d');
+  const pieChart = new Chart(pieCtx, {
+    type: 'pie',
+    data: {
+      labels: {{ pie_labels | safe }},
+      datasets: [{
+        label: '# of Items',
+        data: {{ pie_data | safe }},
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)',
+          'rgba(255, 159, 64, 0.7)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+      }
+    }
+  });
+</script>
+
+{% endblock %}

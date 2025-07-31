@@ -1,0 +1,101 @@
+ID,Name,Category,Quantity,Unit,Min.Threshold
+1,Pen,Stationery,500,pcs,50
+2,Pencil,Stationery,300,pcs,30
+3,Notebook,Stationery,250,pcs,25
+4,Eraser,Stationery,400,pcs,40
+5,Stapler,Stationery,150,pcs,15
+6,Marker,Stationery,200,pcs,20
+7,Highlighter,Stationery,180,pcs,18
+8,Folder,Stationery,120,pcs,12
+9,Paper Clip,Stationery,1000,pcs,100
+10,Glue Stick,Stationery,75,pcs,8
+11,Scissors,Stationery,60,pcs,6
+12,Calculator,Electronics,50,pcs,5
+13,Mouse,Electronics,80,pcs,8
+14,Keyboard,Electronics,70,pcs,7
+15,Laptop Charger,Electronics,40,pcs,4
+16,USB Cable,Electronics,150,pcs,15
+17,HDMI Cable,Electronics,120,pcs,12
+18,External Hard Drive,Electronics,30,pcs,3
+19,Monitor,Electronics,25,pcs,3
+20,Projector,Electronics,10,pcs,1
+21,Chair,Furniture,75,pcs,7
+22,Table,Furniture,30,pcs,3
+23,Bookshelf,Furniture,15,pcs,2
+24,Cabinet,Furniture,20,pcs,2
+25,Desk Lamp,Furniture,40,pcs,4
+26,File Cabinet,Furniture,10,pcs,1
+27,Whiteboard,Furniture,12,pcs,1
+28,Clock,Furniture,28,pcs,3
+29,Rug,Furniture,50,pcs,5
+30,Coaster,Furniture,300,pcs,30
+31,Water Bottle,Kitchen,200,pcs,20
+32,Coffee Mug,Kitchen,150,pcs,15
+33,Plate,Kitchen,100,pcs,10
+34,Fork,Kitchen,400,pcs,40
+35,Spoon,Kitchen,350,pcs,35
+36,Knife,Kitchen,50,pcs,5
+37,Napkin,Kitchen,2000,pcs,200
+38,Cleaner Spray,Cleaning,80,bottle,8
+39,Broom,Cleaning,60,pcs,6
+40,Mop,Cleaning,30,pcs,3
+41,Trash Bag,Cleaning,1000,pcs,100
+42,Hand Soap,Cleaning,100,bottle,10
+43,Disinfectant,Wipes,Cleaning,120,packets,12
+44,Tissue Box,Cleaning,250,pcs,25
+45,Air Freshener,Cleaning,60,bottle,6
+46,Laminator,Office Equipment,15,pcs,2
+47,Puncher,Office Equipment,20,pcs,2
+48,Shredder,Office Equipment,5,pcs,1
+49,Paper Ream,Office Supplies,100,packs,10
+50,Ink Cartridge,Office Supplies,80,pcs,8
+51,Staples,Office Supplies,200,boxes,20
+52,Notepad,Office Supplies,300,pcs,30
+53,Label Printer,Office Equipment,10,pcs,1
+54,Desk Organizer,Office Supplies,40,pcs,4
+55,Calendar,Office Supplies,150,pcs,15
+56,Envelopes,Office Supplies,500,pcs,50
+57,Sticky Notes,Office Supplies,400,pads,40
+58,Printer Paper,Office Supplies,100,packs,10
+59,Laminating Pouches,Office Supplies,300,packs,30
+60,Clipboard,Office Supplies,60,pcs,6
+61,Desktop,Computers,25,pcs,2
+62,Laptop,Computers,30,pcs,3
+63,Tablet,Computers,20,pcs,2
+64,Smartphone,Computers,50,pcs,4
+65,Router,Networking,15,pcs,1
+66,Network Cable,Networking,200,pcs,20
+67,Switch,Networking,10,pcs,1
+68,Firewall Device,Networking,5,pcs,1
+69,Server Rack,Networking,7,pcs,1
+70,Projector Screen,Presentation,12,pcs,1
+71,Microphone,Presentation,25,pcs,2
+72,Speaker,Presentation,30,pcs,3
+73,Camera,Presentation,8,pcs,1
+74,Tripod,Presentation,15,pcs,1
+75,Extension Cord,Electrical,120,pcs,12
+76,Power Strip,Electrical,80,pcs,8
+77,Battery AA,Electrical,500,pcs,50
+78,Battery AAA,Electrical,400,pcs,40
+79,Light Bulb,Electrical,100,pcs,10
+80,Surge Protector,Electrical,25,pcs,3
+81,Fire Extinguisher,Safety,20,pcs,2
+82,First Aid Kit,Safety,15,pcs,2
+83,Emergency Exit Sign,Safety,10,pcs,1
+84,Smoke Detector,Safety,12,pcs,1
+85,Security Camera,Safety,18,pcs,2
+86,Gloves,Safety,300,pcs,30
+87,Helmet,Safety,50,pcs,5
+88,Running Shoes,Sports,120,pairs,10
+89,Sports Shirt,Sports,200,pcs,20
+90,Yoga Mat,Sports,75,pcs,7
+91,Dumbbell Set,Sports,25,sets,3
+92,Basketball,Sports,60,pcs,6
+93,Football,Sports,55,pcs,5
+94,Tennis Racket,Sports,40,pcs,4
+95,Golf Clubs,Sports,20,sets,2
+96,Bicycle,Sports,15,pcs,2
+97,Helmet,Sports,30,pcs,3
+98,Waterproof Jacket,Clothing,70,pcs,7
+99,T-shirt,Clothing,200,pcs,20
+100,Jeans,Clothing,150,pcs,15

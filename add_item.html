@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Add New Item</h2>
+<form method="POST" action="{{ url_for('add') }}">
+  <div class="mb-3">
+    <label for="name" class="form-label">Item Name *</label>
+    <input type="text" class="form-control" id="name" name="name" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <input type="text" class="form-control" id="category" name="category">
+  </div>
+
+  <div class="mb-3">
+    <label for="quantity" class="form-label">Quantity *</label>
+    <input type="number" class="form-control" id="quantity" name="quantity" min="0" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="min_threshold" class="form-label">Minimum Stock Threshold</label>
+    <input type="number" class="form-control" id="min_threshold" name="min_threshold" min="0" value="0">
+  </div>
+
+  <div class="mb-3">
+    <label for="unit" class="form-label">Unit (e.g., pcs, kg, box)</label>
+    <input type="text" class="form-control" id="unit" name="unit">
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Item</button>
+  <a href="{{ url_for('dashboard') }}" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+{% endblock %}

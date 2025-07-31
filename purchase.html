@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Purchase Items</h2>
+
+<form method="POST" class="mb-3">
+  <div class="mb-3">
+    <label for="item_id" class="form-label">Scan or Enter Item ID</label>
+    <input type="text" class="form-control" id="item_id" name="item_id" required autofocus>
+  </div>
+  <div class="mb-3">
+    <label for="quantity" class="form-label">Quantity</label>
+    <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="1">
+  </div>
+  <button type="submit" class="btn btn-primary">Purchase</button>
+  <a href="{{ url_for('dashboard') }}" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+
+{% if message %}
+  <div class="alert alert-info">{{ message }}</div>
+{% endif %}
+{% endblock %}
